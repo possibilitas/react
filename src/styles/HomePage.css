@@ -1,0 +1,173 @@
+.home-page-wrapper {
+  position: relative; /* 자식 요소의 absolute 위치 지정을 위한 기준 */
+  min-height: 100vh; /* 전체 화면 높이 */
+}
+
+.top-left-icon {
+  position: absolute; /* 뷰포트가 아닌 부모 요소 기준으로 위치 */
+  top: 20px; /* 상단에서 20px 떨어진 위치 */
+  left: 20px; /* 좌측에서 20px 떨어진 위치 */
+  width: 40px; /* 아이콘 크기 조절 (필요에 따라 변경) */
+  height: auto;
+  cursor: pointer;
+}
+
+.main-page {
+  width: 80%; /* 너비를 80%로 설정 */
+  margin: 0 auto; /* 가운데 정렬 */
+  padding: 20px 0 80px 0; /* 상하 패딩 추가, 하단 패딩을 80px로 설정 */
+  box-sizing: border-box; /* 패딩이 너비에 포함되도록 */
+}
+
+
+.training-section {
+    margin-bottom: 20px;
+  }
+  
+  .training-cards {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .card.small-card {
+    flex: 1;
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border: 1px solid #e0e0e0; /* 전역 테두리 추가 */
+  }
+  
+  .card.small-card.dark-card {
+    background: #aaa;
+    color: white;
+  }
+  
+  .card.full-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border: 1px solid #e0e0e0; /* 전역 테두리 추가 */
+  }
+
+  .card h3 {
+    margin-top: 0; /* 카드 내부 h3의 상단 여백 제거 */
+  }
+  
+  .card.green-card {
+    background: white;
+  }
+  
+  .ovr-graph {
+    height: 80px;
+    background: #bbb;
+    border-radius: 8px;
+    margin-top: 8px;
+    text-align: center;
+    color: white;
+    line-height: 80px;
+  }
+  
+  .video-thumbnail {
+    height: 100px;
+    background: #ccc;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 100px;
+    font-size: 24px;
+  }
+  
+  .section-title {
+    margin-bottom: 8px;
+  }
+  
+  .bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    width: 80%; /* 너비를 80%로 설정 */
+    left: 0;
+    right: 0;
+    margin: 0 auto; /* 가운데 정렬 */
+    background: white;
+    padding: 12px 0;
+    border-top: none; /* 상단 테두리 제거 */
+    box-shadow: none; /* 그림자 제거 */
+  }
+
+  .bottom-nav button {
+    background: none; /* 배경 제거 */
+    border: none; /* 테두리 제거 */
+    color: #555; /* 글자색 */
+    padding: 10px; /* 패딩 */
+    font-size: 14px; /* 글자 크기 */
+    cursor: pointer; /* 마우스 오버 시 포인터 */
+    flex: 1; /* 공간 균등 분배 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bottom-nav button:hover {
+    color: #007bff; /* 호버 시 색상 변경 */
+  }
+
+.education-materials-list {
+  margin-top: 15px;
+}
+
+.education-material-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.education-material-item:last-child {
+  border-bottom: none;
+}
+
+.material-type {
+  font-size: 0.8em;
+  color: #888;
+  margin-right: 10px;
+}
+
+.material-title {
+  flex-grow: 1;
+  font-weight: bold;
+}
+
+.material-duration {
+  font-size: 0.9em;
+  color: #666;
+  margin-left: 10px;
+}
+
+.behavior-records-list {
+  margin-top: 15px;
+}
+
+.behavior-record-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.behavior-record-item:last-child {
+  border-bottom: none;
+}
+
+.record-date {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.record-description {
+  color: #555;
+}
+  
