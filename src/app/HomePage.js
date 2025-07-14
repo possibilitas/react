@@ -1,80 +1,130 @@
+// HomePage.js
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../styles/HomePage.css';
+import '../styles/HomePage.css'; // 기존 스타일 유지
+import BottomNavigation from '../components/BottomNavigation';
 import zerodose_img from '../features/assets/zerodose_logo.svg';
-import BottomNavigation from '../components/BottomNavigation'; // BottomNavigation 컴포넌트 임포트
+import { useNavigate } from 'react-router-dom';
 
-export default function HomePage() {
-  const navigate = useNavigate(); // useNavigate 훅 사용
 
-  const handleLogoClick = () => {
-    navigate('/entry'); // /entry 경로로 이동
-  };
+// 임시 아이콘
+const GearIcon = () => <span role="img" aria-label="settings">⚙️</span>;
 
+export default function HomePage({ onNavClick, currentScreen }) {
   return (
-    <div className="main-page">
-      {/* 상단 프로필 영역 */}
-      <header className="profile-header">
-        <img src={zerodose_img} alt="ZeroDose Logo" className="top-left-icon" onClick={handleLogoClick} />
-
-
+    <div className="home-screen-container">
+      {/* 헤더 */}
+      <header className="home-header">
+        <img
+          src={zerodose_img}
+          alt="ZeroDose Logo"
+          className="logo-image"
+        />
+        <div className="header-right">
+          <GearIcon className="settings-icon" />
+        </div>
       </header>
 
-      {/* 학습 훈련 (가로 배치된 카드 2개) */}
-      <section className="card full-card training-section">
-        <h3 className="section-title">학습 훈련</h3>
-        <div className="training-cards">
-          <div className="card small-card">
-            <p>학습 훈련할 게임을 선택하세요.</p>
-            <button>게임 찾기</button>
+      {/* 메인 콘텐츠 */}
+      <main className="home-content">
+        {/* 프로필 카드: 추가 구성 */}
+        <section className="profile-card">
+          <div className="profile-image-wrapper">
+            <img src="https://via.placeholder.com/150/add8e6?text=Dino" alt="Profile character" className="profile-character" />
           </div>
-          <div className="card small-card dark-card">
-            <p>최근 게임 횟수 평균</p>
-            <div className="ovr-graph">[그래프]</div>
+          <h2 className="profile-name">은우우공룡</h2>
+          <div className="level-info">
+            <span className="level-text">LV.3</span>
+            <div className="progress-bar-container">
+              <div className="progress-bar-fill" style={{ width: '85%' }}></div>
+            </div>
+            <span className="level-description">정서 표현 마스터사우루스</span>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 부모 교육 */}
-      <section className="card full-card">
-        <h3>부모 교육</h3>
-        <div className="education-materials-list">
-          {[
-            { id: 1, title: '자폐 스펙트럼 장애 이해하기', type: '영상', duration: '15분' },
-            { id: 2, title: '긍정적 행동 지원 가이드', type: '문서', duration: '10분' },
-            { id: 3, title: '사회성 발달 촉진 전략', type: '문서', duration: '8분' },
-          ].map(material => (
-            <div key={material.id} className="education-material-item">
-              <span className="material-type">[{material.type}]</span>
-              <span className="material-title">{material.title}</span>
-              <span className="material-duration">({material.duration})</span>
+        {/* 훈련 섹션 */}
+        <section className="training-section card">
+          <div className="card-header">
+            <h3>훈련</h3>
+            <span className="last-updated-text">최근 게임 2일 전 &gt;</span>
+          </div>
+          <div className="training-summary">
+            <div className="donut-chart-container">
+              <div className="chart-center"></div>
+              <div className="chart-segment segment-1"></div>
+              <div className="chart-segment segment-2"></div>
+              <div className="chart-segment segment-3"></div>
+              <div className="chart-legend">
+                <div className="legend-item"><span className="legend-dot dot-1"></span>자기 이해</div>
+                <div className="legend-item"><span className="legend-dot dot-2"></span>정서 표현</div>
+                <div className="legend-item"><span className="legend-dot dot-3"></span>타인 이해</div>
+              </div>
             </div>
-          ))}
-        </div>
-        <div className="video-count">자료 {}개</div> {/* 더미 데이터 개수 반영 */} 
-      </section>
-
-      {/* 행동 기록 */}
-      <section className="card full-card green-card">
-        <h3>행동 기록</h3>
-        <div className="behavior-records-list">
-          {[
-            { id: 1, date: '2024-07-08', description: ' 특정 소리에 민감한 반응 보임' },
-            { id: 2, date: '2024-07-07', description: ' 새로운 장난감에 흥미를 보임' },
-            { id: 3, date: '2024-07-06', description: ' 눈 맞춤 시간이 증가함' },
-          ].map(record => (
-            <div key={record.id} className="behavior-record-item">
-              <span className="record-date">{record.date}:</span>
-              <span className="record-description">{record.description}</span>
+            <div className="score-info">
+              <p>최근 학습 횟수</p>
+              <p className="score">12회</p>
+              <p className="expected-score">예상 점수 +6점</p>
             </div>
-          ))}
-          <br></br>
-        </div>
-        <button>모든 기록 보기</button>
-      </section>
+          </div>
+        </section>
 
-      {/* 하단 네비게이션 */}
-      <BottomNavigation />
+        {/* 부모 교육 & 행동 기록 */}
+        <section className="two-column-sections">
+          {/* 부모 교육 */}
+          <div className="parent-education-section card">
+            <div className="card-header">
+              <h3>부모 교육</h3>
+              <span className="last-updated-text">최근 10시간 전 &gt;</span>
+            </div>
+            <div className="education-categories">
+              <div className="category-item">
+                <span>자폐증</span>
+                <div className="category-progress-bar-container">
+                  <div className="category-progress-bar-fill" style={{ width: '70%' }}></div>
+                </div>
+              </div>
+              <div className="category-item">
+                <span>상호작용</span>
+                <div className="category-progress-bar-container">
+                  <div className="category-progress-bar-fill" style={{ width: '50%' }}></div>
+                </div>
+              </div>
+              <div className="category-item">
+                <span>발달지연</span>
+                <div className="category-progress-bar-container">
+                  <div className="category-progress-bar-fill" style={{ width: '80%' }}></div>
+                </div>
+              </div>
+              <div className="category-item">
+                <span>중증장애</span>
+                <div className="category-progress-bar-container">
+                  <div className="category-progress-bar-fill" style={{ width: '40%' }}></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 행동 기록 */}
+          <div className="behavior-log-section card">
+            <div className="card-header">
+              <h3>행동 기록</h3>
+              <span className="last-updated-text">최근 24시간 전 &gt;</span>
+            </div>
+            <div className="behavior-buttons-grid">
+              <button className="behavior-circle-button">
+                <span>무응답</span>
+                <span className="count">5회</span>
+              </button>
+              <button className="behavior-circle-button">
+                <span>반응성</span>
+                <span className="count">3회</span>
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* 기존 하단 네비게이션 바 유지 */}
+      {/*<BottomNavigation onNavClick={onNavClick} currentScreen={currentScreen} />*/}
     </div>
   );
 }
