@@ -1,0 +1,44 @@
+/* 로딩 오버레이: 화면 전체를 덮는 반투명 배경 */
+.loading-overlay {
+    position: fixed; /* 화면에 고정 */
+    top: 0;
+    left: 0;
+    width: 100vw; /* 화면 전체 너비 */
+    height: 100vh; /* 화면 전체 높이 */
+    background-color: rgba(255, 255, 255, 0.8); /* 흰색 반투명 배경 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* 다른 요소들 위에 표시 */
+    backdrop-filter: blur(4px); /* 뒷 배경을 흐리게 처리 */
+  }
+  
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* 스피너와 텍스트 사이 간격 */
+  }
+  
+  /* 스피너: 빙글빙글 돌아가는 링 */
+  .spinner {
+    width: 60px;
+    height: 60px;
+    border: 8px solid #f3f3f3; /* 링의 기본 색상 (연한 회색) */
+    border-top: 8px solid #5c67f2; /* 링의 돌아가는 부분 색상 (파란색 계열) */
+    border-radius: 50%;
+    animation: spin 1.2s linear infinite; /* spin 애니메이션 적용 */
+  }
+  
+  /* 회전 애니메이션 정의 */
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* 로딩 텍스트 스타일 */
+  .loading-text {
+    font-size: 1.5rem; /* 글자 크기 */
+    font-weight: bold;
+    color: #333;
+  }

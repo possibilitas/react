@@ -12,6 +12,7 @@ import PlayScreen from '../features/auth/pages/PlayScreen';
 import StatsScreen from '../features/auth/pages/StatsScreen';
 
 import BottomNavigation from '../components/BottomNavigation';
+import ThirdGamePage from '../features/thirdgame/pages/ThirdGamePage'; 
 
 function AppRouter() {
   return (
@@ -70,6 +71,7 @@ function MainRoutes() {
         path="/stats"
         element={withBottomNav(StatsScreen, 'stats')}
       />
+      <Route path="/cardgame" element={<ThirdGamePage />} />
 
       {/* 기본 경로 */}
       <Route path="/" element={<App />} />
