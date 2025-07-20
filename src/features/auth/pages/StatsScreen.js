@@ -34,10 +34,7 @@ function StatsScreen({ onNavClick, currentScreen }) {
     <div className="stats-screen-container">
       {/* 헤더 */}
       <header className="stats-header">
-        <h1 className="logo">통계</h1>
-        <div className="header-right">
-          <GearIcon className="settings-icon" />
-        </div>
+        <h1 className="logo">𝒁𝒆𝒓𝒐𝑫𝒐𝒔𝒆</h1>
       </header>
 
       {/* 메인 콘텐츠 영역 */}
