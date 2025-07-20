@@ -1,0 +1,497 @@
+/* PlayScreen.css */
+
+/* 공통 스타일 (Screen Container, Header, Card 등) */
+.play-screen-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.play-header { /* HomeScreen, BehaviorLogScreen의 헤더와 유사 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.play-header .logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #7a73ff; /* 로고 색상 */
+  margin: 0;
+}
+
+.play-header .settings-icon {
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+}
+
+.play-content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  padding-bottom: 80px; /* 하단 네비게이션 바 공간 확보 */
+}
+
+.card { /* HomeScreen, BehaviorLogScreen의 카드와 유사 */
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+}
+
+.card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.card .card-header h3 {
+  font-size: 20px;
+  margin: 0;
+  color: #333;
+  font-weight: bold;
+}
+
+.card .card-header .view-all-text {
+  font-size: 13px;
+  color: #888;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* 프로필 요약 섹션 */
+.play-profile-summary {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+}
+
+.play-profile-summary .profile-image-wrapper {
+  margin-right: 15px;
+}
+
+.play-profile-summary .profile-character {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+.play-profile-summary .profile-info {
+  flex-grow: 1;
+}
+
+.play-profile-summary .profile-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.play-profile-summary .level-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+.play-profile-summary .level-text {
+  font-weight: bold;
+  background-color: #e6e6fa; /* 연보라 배경 */
+  color: #7a73ff; /* 보라색 텍스트 */
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.play-profile-summary .progress-bar-container {
+  flex-grow: 1;
+  height: 6px;
+  background-color: #eee;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.play-profile-summary .progress-bar-fill {
+  height: 100%;
+  background-color: #a8a2ed; /* 보라색 채우기 */
+  border-radius: 3px;
+}
+
+/* 오늘의 플레이 섹션 */
+.today-play-section .recommended-plays-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.recommended-play-item {
+  display: flex;
+  align-items: flex-start; /* 상단 정렬 */
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background-color: #fcfcfc;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.play-item-image {
+  width: 120px; /* 이미지 너비 고정 */
+  height: 100px; /* 이미지 높이 고정 */
+  object-fit: cover;
+  border-radius: 10px 0 0 10px;
+  flex-shrink: 0; /* 줄어들지 않게 */
+}
+
+.play-item-details {
+  padding: 15px;
+  flex-grow: 1;
+}
+
+.play-item-age {
+  font-size: 12px;
+  color: #7a73ff; /* 보라색 */
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.play-item-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+  line-height: 1.3;
+}
+
+.play-item-description {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.start-play-button {
+  padding: 8px 15px;
+  background-color: #7a73ff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.start-play-button:hover {
+  background-color: #6a63ed;
+}
+
+/* 플레이 모아보기 섹션 */
+.view-all-play-section .play-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* 최소 100px, 반응형 */
+  gap: 15px;
+  justify-content: center; /* 그리드 항목 가운데 정렬 */
+}
+
+.play-category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #fefefe;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eee;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.play-category-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.play-category-item .category-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+
+.play-category-item .category-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #444;
+}
+
+/* 하단 내비게이션 바 (HomeScreen의 스타일과 동일) */
+.bottom-nav-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 10px 0;
+  border-top: 1px solid #eee;
+  position: sticky; /* 또는 fixed */
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.bottom-nav-bar .nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  color: #999;
+  cursor: pointer;
+  min-width: 60px;
+}
+
+.bottom-nav-bar .nav-item.active {
+  color: #7a73ff;
+  font-weight: bold;
+}
+
+.bottom-nav-bar .nav-item span {
+  margin-top: 5px;
+}
+
+.bottom-nav-bar .nav-item > span:first-child {
+    font-size: 24px;
+}
+
+.bottom-nav-bar .play-button-wrapper {
+    position: relative;
+    top: -20px;
+    margin: 0 10px;
+}
+
+.bottom-nav-bar .play-button-large {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #7a73ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    border: 4px solid #f0f2f5;
+}
+
+.bottom-nav-bar .play-button-large.active { /* 플레이 버튼 활성화 시 배경색 유지 */
+  background-color: #7a73ff;
+  color: white;
+}
+
+
+/* ---------------------------------------------------- */
+/* 미디어 쿼리 - 모바일 화면 최적화 (PlayScreen 전용) */
+/* ---------------------------------------------------- */
+
+/* 화면 너비 768px 이하 (태블릿 및 모바일) */
+@media (max-width: 768px) {
+  .play-content {
+    padding: 15px;
+  }
+
+  .play-header .logo {
+    font-size: 24px;
+  }
+
+  .play-profile-summary {
+    padding: 15px;
+  }
+
+  .play-profile-summary .profile-character {
+    width: 60px;
+    height: 60px;
+  }
+
+  .play-profile-summary .profile-name {
+    font-size: 18px;
+  }
+
+  .play-profile-summary .level-info {
+    font-size: 13px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .card .card-header h3 {
+    font-size: 18px;
+  }
+
+  .play-item-image {
+    width: 100px;
+    height: 80px;
+  }
+
+  .play-item-details {
+    padding: 10px;
+  }
+
+  .play-item-age {
+    font-size: 11px;
+  }
+
+  .play-item-title {
+    font-size: 15px;
+  }
+
+  .play-item-description {
+    font-size: 12px;
+  }
+
+  .start-play-button {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .play-category-item .category-image {
+    width: 70px;
+    height: 70px;
+  }
+
+  .play-category-item .category-title {
+    font-size: 13px;
+  }
+}
+
+/* 화면 너비 500px 이하 (주로 스마트폰) */
+@media (max-width: 500px) {
+  .play-content {
+    padding: 10px;
+  }
+
+  /* 오늘의 플레이 아이템이 세로로 쌓이도록 변경 */
+  .recommended-play-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .play-item-image {
+    width: 100%; /* 너비 100% */
+    height: 150px; /* 높이 고정 */
+    border-radius: 10px 10px 0 0;
+  }
+
+  .play-item-details {
+    width: 100%;
+    box-sizing: border-box; /* 패딩 포함 너비 계산 */
+  }
+
+  .play-item-age {
+    font-size: 12px;
+  }
+
+  .play-item-title {
+    font-size: 16px;
+  }
+
+  .play-item-description {
+    font-size: 13px;
+  }
+
+  .start-play-button {
+    width: 80%; /* 버튼 너비 줄이기 */
+    margin-top: 10px;
+  }
+
+  .play-categories-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* 카테고리 아이템 크기 줄이기 */
+    gap: 10px;
+  }
+
+  .play-category-item .category-image {
+    width: 60px;
+    height: 60px;
+  }
+
+  .play-category-item .category-title {
+    font-size: 12px;
+  }
+
+  .bottom-nav-bar .nav-item {
+    min-width: 50px;
+  }
+  .bottom-nav-bar .nav-item > span:first-child {
+    font-size: 22px;
+  }
+
+  .bottom-nav-bar .play-button-wrapper {
+      top: -15px;
+      margin: 0 5px;
+  }
+
+  .bottom-nav-bar .play-button-large {
+      width: 50px;
+      height: 50px;
+      font-size: 25px;
+  }
+}
+
+/* 화면 너비 320px 이하 (아주 작은 스마트폰) */
+@media (max-width: 320px) {
+  .play-header .logo {
+    font-size: 22px;
+  }
+
+  .play-profile-summary .profile-name {
+    font-size: 16px;
+  }
+
+  .play-item-image {
+    height: 120px;
+  }
+
+  .play-item-title {
+    font-size: 14px;
+  }
+
+  .play-item-description {
+    font-size: 11px;
+  }
+
+  .start-play-button {
+    width: 90%;
+  }
+
+  .play-categories-grid {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  }
+
+  .play-category-item .category-image {
+    width: 50px;
+    height: 50px;
+  }
+
+  .bottom-nav-bar .nav-item {
+    font-size: 10px;
+    min-width: 40px;
+  }
+}
