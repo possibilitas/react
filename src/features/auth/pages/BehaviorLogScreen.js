@@ -69,10 +69,7 @@ function BehaviorLogScreen({ onNavClick, currentScreen }) { // props를 받도�
     <div className="log-screen-container">
       {/* 헤더 */}
       <header className="log-header">
-        <h1 className="logo">훈련 기록</h1>
-        <div className="header-right">
-          <GearIcon className="settings-icon" />
-        </div>
+        <h1 className="logo">𝒁𝒆𝒓𝒐𝑫𝒐𝒔𝒆</h1>
       </header>
 
       {/* 메인 콘텐츠 영역 */}

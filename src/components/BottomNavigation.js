@@ -39,7 +39,7 @@ function BottomNavigation({ onNavClick, currentScreen }) {
         onClick={() => onNavClick('parentEdu')}
       >
         <BookIcon />
-        <span>부모교육</span>
+        <span>설문지</span>
       </div>
       <div
         className={`nav-item ${currentScreen === 'stats' ? 'active' : ''}`}
