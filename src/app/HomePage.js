@@ -13,15 +13,8 @@ export default function HomePage({ onNavClick, currentScreen }) {
   return (
     <div className="home-screen-container">
       {/* 헤더 */}
-      <header className="home-header">
-        <img
-          src={zerodose_img}
-          alt="ZeroDose Logo"
-          className="logo-image"
-        />
-        <div className="header-right">
-          <GearIcon className="settings-icon" />
-        </div>
+      <header className="stats-header">
+        <h1 className="logo">𝒁𝒆𝒓𝒐𝑫𝒐𝒔𝒆</h1>
       </header>
 
       {/* 메인 콘텐츠 */}
@@ -29,7 +22,11 @@ export default function HomePage({ onNavClick, currentScreen }) {
         {/* 프로필 카드: 추가 구성 */}
         <section className="profile-card">
           <div className="profile-image-wrapper">
-            <img src="https://via.placeholder.com/150/add8e6?text=Dino" alt="Profile character" className="profile-character" />
+            <img
+            src={zerodose_img}
+            alt="ZeroDose Logo"
+            className="profile-character"
+            />
           </div>
           <h2 className="profile-name">은우우공룡</h2>
           <div className="level-info">

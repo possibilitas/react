@@ -5,6 +5,8 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  position: relative; /* z-index가 작동하려면 필요합니다. */
+  z-index: -1; /* 로고를 다른 콘텐츠 뒤에 배치합니다. */
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -22,6 +24,9 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  /* 헤더 콘텐츠가 자체적으로 상대적으로 배치되기를 원한다면 추가합니다. */
+  position: relative;
+  z-index: 0; /* 헤더 콘텐츠가 로고 위에 있도록 합니다. */
 }
 
 .App-link {
