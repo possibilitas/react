@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
 import '../../../styles/BehaviorLogScreen.css';
-import BottomNavigation from '../../../components/BottomNavigation';
 
-// 아이콘을 위한 임시 placeholder (실제 앱에서는 react-icons 같은 라이브러리 사용 권장)
-const HomeIcon = () => <span role="img" aria-label="home">🏠</span>;
-const PencilIcon = () => <span role="img" aria-label="pencil">✏️</span>;
-const PlayIcon = () => <span role="img" aria-label="play">▶️</span>;
-const BookIcon = () => <span role="img" aria-label="book">📚</span>;
-const ChartIcon = () => <span role="img" aria-label="chart">📊</span>; // 통계 아이콘
-const GearIcon = () => <span role="img" aria-label="settings">⚙️</span>;
 
 function BehaviorLogScreen({ onNavClick, currentScreen }) { // props를 받도록 수정
   const [selectedBehaviorType, setSelectedBehaviorType] = useState(null);

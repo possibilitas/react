@@ -6,10 +6,10 @@ import SignupPage from '../features/auth/pages/SignupPage'; // SignupPage 임포
 import HomePage from './HomePage';
 import App from './App';
 
-import BehaviorLogScreen from '../features/auth/pages/BehaviorLogScreen';
-import ParentEduScreen from '../features/auth/pages/ParentEduScreen';
-import PlayScreen from '../features/auth/pages/PlayScreen';
-import StatsScreen from '../features/auth/pages/StatsScreen';
+import BehaviorLogScreen from '../features/adult/pages/BehaviorLogScreen';
+import ParentEduScreen from '../features/adult/pages/ParentEduScreen';
+import PlayScreen from '../features/adult/pages/PlayScreen';
+import StatsScreen from '../features/adult/pages/StatsScreen';
 
 import BottomNavigation from '../components/BottomNavigation';
 import ThirdGamePage from '../features/thirdgame/pages/ThirdGamePage'; 
