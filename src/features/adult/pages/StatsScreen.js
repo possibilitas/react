@@ -1,14 +1,6 @@
 import React from 'react';
 import '../../../styles/StatsScreen.css'; // 화면 스타일을 위한 CSS 파일입니다.
-import BottomNavigation from '../../../components/BottomNavigation';
 
-// 아이콘을 위한 임시 placeholder
-const GearIcon = () => <span role="img" aria-label="settings">⚙️</span>;
-const HomeIcon = () => <span role="img" aria-label="home">🏠</span>;
-const PencilIcon = () => <span role="img" aria-label="pencil">✏️</span>;
-const PlayIcon = () => <span role="img" aria-label="play">▶️</span>;
-const BookIcon = () => <span role="img" aria-label="book">📚</span>;
-const ChartIcon = () => <span role="img" aria-label="chart">📊</span>;
 
 function StatsScreen({ onNavClick, currentScreen }) {
   // 통계 데이터 (임시)
