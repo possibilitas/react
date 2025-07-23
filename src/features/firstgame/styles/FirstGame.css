@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+
+/* 페이지 배경 설정 (body 대신 사용) */
+.first-game-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background: linear-gradient(135deg, #a2d2ff 0%, #bde0fe 100%);
+    font-family: 'Poor Story', cursive;
+    box-sizing: border-box;
+}
+
+/* 메인 게임 컨테이너 */
+.first-game-container {
+    width: 100%;
+    max-width: 500px;
+    background: white;
+    padding: clamp(20px, 5vw, 40px);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.game-title {
+    font-size: clamp(2rem, 6vw, 2.8rem);
+    color: #333;
+    margin: 0 0 10px 0;
+}
+
+.game-instruction {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.quiz-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.answer-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.answer-button {
+    padding: 10px;
+    border: 3px solid #e0e0e0;
+    border-radius: 15px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.answer-button:hover:not(:disabled) {
+    transform: translateY(-3px);
+    border-color: #5c67f2;
+}
+
+.answer-choice-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.answer-button.correct {
+    background-color: #c8e6c9;
+    border-color: #28a745;
+}
+
+.answer-button.incorrect {
+    background-color: #ffcdd2;
+    border-color: #dc3545;
+}
+
+.answer-button.disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* 결과 창 스타일 */
+.modal-like-result {
+    padding: 20px;
+}
+
+.result-title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.result-score {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.result-coin {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #ffc107;
+    margin-bottom: 30px;
+}
+
+.result-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* 공통 버튼 스타일 */
+.btn {
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-family: 'Poor Story', cursive;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-replay {
+    background-color: #5c67f2;
+    color: white;
+}
+
+.btn-exit {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+/* 상태 메시지 */
+.status-message.error {
+    color: #ff6b6b;
+    font-size: 1.5rem;
+    padding: 2rem;
+    text-align: center;
+    width: 100%;
+}
