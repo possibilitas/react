@@ -14,6 +14,7 @@ import StatsScreen from '../features/adult/pages/StatsScreen';
 import BottomNavigation from '../components/BottomNavigation';
 import ThirdGamePage from '../features/thirdgame/pages/ThirdGamePage'; 
 import FirstGamePage from '../features/firstgame/pages/FirstGamePage'; // ⇐ 추가
+import SecondGamePage from '../features/secondgame/pages/SecondGamePage'; // ⇐ 추가
 
 function AppRouter() {
   return (
@@ -60,6 +61,8 @@ function MainRoutes() {
 
       
       <Route path="/firstgame" element={<FirstGamePage />} /> {}
+
+      <Route path="/secondgame" element={<SecondGamePage />} /> {}
 
       <Route
         path="/parentEdu"
