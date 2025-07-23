@@ -13,6 +13,7 @@ import StatsScreen from '../features/adult/pages/StatsScreen';
 
 import BottomNavigation from '../components/BottomNavigation';
 import ThirdGamePage from '../features/thirdgame/pages/ThirdGamePage'; 
+import FirstGamePage from '../features/firstgame/pages/FirstGamePage'; // ⇐ 추가
 
 function AppRouter() {
   return (
@@ -56,6 +57,9 @@ function MainRoutes() {
         path="/behaviorLog"
         element={withBottomNav(BehaviorLogScreen, 'behaviorLog')}
       />
+
+      
+      <Route path="/firstgame" element={<FirstGamePage />} /> {}
 
       <Route
         path="/parentEdu"
