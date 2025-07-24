@@ -1,23 +1,25 @@
+// Router.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 
 // Corrected Paths (all paths now correctly go up one level to 'src' then down to their respective directories)
 import LoginPage from '../features/auth/pages/LoginPage';
 import SignupPage from '../features/auth/pages/SignupPage';
-import HomePage from './HomePage'; // Corrected
-import App from './App';          // Corrected
+import HomePage from './HomePage';
+import App from './App';
 
 import BehaviorLogScreen from '../features/adult/pages/BehaviorLogScreen';
 import ParentEduScreen from '../features/adult/pages/ParentEduScreen';
 import PlayScreen from '../features/adult/pages/PlayScreen';
 import StatsScreen from '../features/adult/pages/StatsScreen';
 import ShopScreen from '../features/adult/pages/ShopScreen';
-import CustomScreen from '../features/adult/pages/CustomScreen'; 
+import CustomScreen from '../features/adult/pages/CustomScreen';
+import AchievementScreen from '../features/adult/pages/AchievementScreen'; // AchievementScreen 임포트 추가
 
-import BottomNavigation from '../components/BottomNavigation'; 
+import BottomNavigation from '../components/BottomNavigation';
 import ThirdGamePage from '../features/thirdgame/pages/ThirdGamePage';
-import FirstGamePage from '../features/firstgame/pages/FirstGamePage'; // 추가된 부분
-import SecondGamePage from '../features/secondgame/pages/SecondGamePage'; // 추가된 부분
+import FirstGamePage from '../features/firstgame/pages/FirstGamePage';
+import SecondGamePage from '../features/secondgame/pages/SecondGamePage';
 
 function AppRouter() {
   return (
@@ -93,6 +95,12 @@ function MainRoutes() {
       <Route
         path="/custom"
         element={<CustomScreen onNavClick={handleNavClick} currentScreen={'custom'} />}
+      />
+
+      {/* 업적 화면 (하단바 제외) - AchievementScreen 추가 */}
+      <Route
+        path="/achievement"
+        element={<AchievementScreen onNavClick={handleNavClick} currentScreen={'achievement'} />}
       />
 
       {/* 카드 게임 화면 */}

@@ -1,6 +1,6 @@
 // src/components/screens/PlayScreen.js
 
-import React, { useState } from 'react'; // useEffect 제거
+import React, { useState } from 'react';
 import '../../../styles/PlayScreen.css';
 import { ChevronLeft, ChevronRight, Settings } from 'lucide-react';
 
@@ -186,9 +186,9 @@ function PlayScreen({ onNavClick, currentScreen }) {
 
         {/* 하단 버튼 섹션 */}
         <section className="bottom-buttons-section">
-          <button className="action-button">
+          <button className="action-button" onClick={() => onNavClick('achievement')}> {/* */}
             <span className="button-icon">📚</span>
-            <span className="button-text">가이드</span>
+            <span className="button-text">업적</span> {/* */}
           </button>
           <button className="action-button primary-action">
             <span className="button-text">{currentViewer.buttonText}</span>
