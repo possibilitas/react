@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ThirdGameCard from '../components/ThirdGameCard';
 import ThirdGameResultModal from '../components/ThirdGameResultModal';
-import LoadingIndicator from '../components/common/LoadingIndicator';
+import LoadingIndicator from '../../../components/common/LoadingIndicator';
+
 import '../styles/ThirdGame.css';
 
 function ThirdGamePage() {
