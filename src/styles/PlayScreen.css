@@ -1,497 +1,425 @@
 /* PlayScreen.css */
 
-/* 공통 스타일 (Screen Container, Header, Card 등) */
+/* 전체 화면 컨테이너 스타일 */
 .play-screen-container {
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background-color: #f0f2f5;
-  font-family: 'Arial', sans-serif;
-  color: #333;
+  flex-direction: column; /* 요소를 세로로 정렬 */
+  min-height: 100vh; /* 최소 높이를 뷰포트 높이로 설정 */
+  background-color: #f0f2f5; /* 배경색 */
+  font-family: 'Arial', sans-serif; /* 폰트 설정 */
+  color: #333; /* 기본 글자색 */
 }
 
-.play-header { /* HomeScreen, BehaviorLogScreen의 헤더와 유사 */
+/* 헤더 스타일 */
+.play-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  justify-content: space-between; /* 양쪽 끝 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  padding: 15px 20px; /* 내부 여백 */
+  background-color: #ffffff; /* 배경색 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 그림자 효과 */
 }
 
-.play-header .logo {
-  font-size: 28px;
+/* '커스텀' 버튼 스타일 */
+.custom-button {
+  background-color: #7a73ff; /* 버튼 배경색 */
+  color: #ffffff; /* 버튼 글자색 */
+  border: none;
+  border-radius: 10px; /* 둥근 모서리 */
+  padding: 10px 15px;
+  font-size: 15px;
   font-weight: bold;
-  color: #7a73ff; /* 로고 색상 */
-  margin: 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(122, 115, 255, 0.4);
+}
+
+.custom-button:hover {
+  background-color: #6059e0; /* 호버 시 색상 변경 */
+  transform: translateY(-2px); /* 호버 시 약간 위로 이동 */
+}
+
+
+.play-header .settings-icon {
+  font-size: 24px; /* lucide-react 아이콘 크기에 맞게 조정 */
+  cursor: pointer; /* 클릭 가능한 커서 */
+  color: #666; /* 아이콘 색상 */
 }
 
 .play-header .settings-icon {
-  font-size: 24px;
-  cursor: pointer;
-  color: #666;
+  font-size: 24px; /* lucide-react 아이콘 크기에 맞게 조정 */
+  cursor: pointer; /* 클릭 가능한 커서 */
+  color: #666; /* 아이콘 색상 */
 }
 
+/* 메인 콘텐츠 영역 스타일 */
 .play-content {
-  flex-grow: 1;
-  padding: 20px;
-  overflow-y: auto;
-  padding-bottom: 80px; /* 하단 네비게이션 바 공간 확보 */
+  flex-grow: 1; /* 남은 공간을 채우도록 확장 */
+  padding: 20px; /* 내부 여백 */
+  overflow-y: auto; /* 내용이 넘칠 경우 스크롤 */
+  height: auto; /* 높이를 자동으로 설정하여 flex-grow가 작동하도록 함 */
+  display: flex; /* flex 컨테이너로 설정 */
+  flex-direction: column; /* 세로로 섹션 정렬 */
+  align-items: center; /* 가로 중앙 정렬 */
+  height: 0; /* 이 부분을 제거 */
 }
 
-.card { /* HomeScreen, BehaviorLogScreen의 카드와 유사 */
+/* 단계 탭 메뉴 섹션 */
+.step-tabs-section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
   background-color: #ffffff;
-  padding: 20px;
   border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  padding: 10px;
 }
 
-.card .card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.card .card-header h3 {
-  font-size: 20px;
-  margin: 0;
-  color: #333;
-  font-weight: bold;
-}
-
-.card .card-header .view-all-text {
-  font-size: 13px;
-  color: #888;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-/* 프로필 요약 섹션 */
-.play-profile-summary {
-  display: flex;
-  align-items: center;
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  margin-bottom: 20px;
-}
-
-.play-profile-summary .profile-image-wrapper {
-  margin-right: 15px;
-}
-
-.play-profile-summary .profile-character {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #ddd;
-}
-
-.play-profile-summary .profile-info {
-  flex-grow: 1;
-}
-
-.play-profile-summary .profile-name {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 5px;
-  color: #333;
-}
-
-.play-profile-summary .level-info {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  color: #555;
-}
-
-.play-profile-summary .level-text {
-  font-weight: bold;
-  background-color: #e6e6fa; /* 연보라 배경 */
-  color: #7a73ff; /* 보라색 텍스트 */
-  padding: 2px 8px;
+.step-tab-button {
+  flex: 1;
+  padding: 10px 15px;
+  margin: 0 5px;
+  border: none;
   border-radius: 10px;
-  font-size: 12px;
-}
-
-.play-profile-summary .progress-bar-container {
-  flex-grow: 1;
-  height: 6px;
-  background-color: #eee;
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.play-profile-summary .progress-bar-fill {
-  height: 100%;
-  background-color: #a8a2ed; /* 보라색 채우기 */
-  border-radius: 3px;
-}
-
-/* 오늘의 플레이 섹션 */
-.today-play-section .recommended-plays-list {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.recommended-play-item {
-  display: flex;
-  align-items: flex-start; /* 상단 정렬 */
-  border: 1px solid #eee;
-  border-radius: 10px;
-  background-color: #fcfcfc;
-  overflow: hidden;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-.play-item-image {
-  width: 120px; /* 이미지 너비 고정 */
-  height: 100px; /* 이미지 높이 고정 */
-  object-fit: cover;
-  border-radius: 10px 0 0 10px;
-  flex-shrink: 0; /* 줄어들지 않게 */
-}
-
-.play-item-details {
-  padding: 15px;
-  flex-grow: 1;
-}
-
-.play-item-age {
-  font-size: 12px;
-  color: #7a73ff; /* 보라색 */
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.play-item-title {
+  background-color: #f0f2f5;
+  color: #666;
   font-size: 16px;
   font-weight: bold;
-  color: #333;
-  margin-bottom: 5px;
-  line-height: 1.3;
-}
-
-.play-item-description {
-  font-size: 13px;
-  color: #666;
-  line-height: 1.5;
-  margin-bottom: 10px;
-}
-
-.start-play-button {
-  padding: 8px 15px;
-  background-color: #7a73ff;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step-tab-button.active {
+  background-color: #7a73ff; /* 활성화된 탭 배경색 */
+  color: #ffffff; /* 활성화된 탭 글자색 */
+  box-shadow: 0 2px 5px rgba(122, 115, 255, 0.4);
+}
+
+.step-tab-button:hover:not(.active) {
+  background-color: #e0e0e0;
+}
+
+
+/* 메인 뷰어 섹션 (슬라이더) 스타일 */
+.main-viewer-section {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  padding-bottom: 75%; /* 4:3 비율 유지 */
+  border-radius: 15px;
+  overflow: hidden; /* 이 부분이 중요합니다. */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.5s ease; /* 배경색 전환 애니메이션 */
+}
+
+.background-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  /* 슬라이드 애니메이션을 위한 초기 상태 설정 */
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* 애니메이션 속성 추가 */
+}
+
+/* 왼쪽에서 슬라이드 인 */
+.background-image-container.slide-in-left {
+  animation: slideInLeft 0.5s ease-out forwards;
+}
+
+/* 오른쪽에서 슬라이드 인 */
+.background-image-container.slide-in-right {
+  animation: slideInRight 0.5s ease-out forwards;
+}
+
+/* 왼쪽에서 나타나는 애니메이션 키프레임 */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* 오른쪽에서 나타나는 애니메이션 키프레임 */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* 캐릭터 이미지 스타일 */
+.character-image {
+  position: absolute; /* 절대 위치 */
+  max-width: 30%; /* 캐릭터 이미지의 최대 너비 (줄임) */
+  max-height: 50%; /* 캐릭터 이미지의 최대 높이 (줄임) */
+  object-fit: contain;
+  z-index: 1;
+  bottom: 10%; /* 하단에서 10% 위로 */
+  left: 50%; /* 가로 중앙 */
+  transform: translateX(-50%); /* 정확한 중앙 정렬 */
+  transition: transform 0.5s ease-in-out; /* 움직임 애니메이션 추가 */
+}
+
+/* 캐릭터 왼쪽으로 이동 */
+.character-image.move-left {
+  transform: translateX(-100%); /* 왼쪽으로 이동 */
+}
+
+/* 캐릭터 오른쪽으로 이동 */
+.character-image.move-right {
+  transform: translateX(0%); /* 오른쪽으로 이동 */
+}
+
+/* 뷰어 콘텐츠 박스 */
+.viewer-content-box {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.8); /* 반투명 흰색 배경 */
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  max-width: 70%; /* 콘텐츠 박스 너비 */
+  z-index: 3; /* 이미지와 버튼 위에 표시 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.viewer-content-box p {
+  margin: 0;
+  font-size: 1.1em;
+  color: #333;
+}
+
+
+/* 좌우 탐색 버튼 스타일 */
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 4; /* 콘텐츠 박스 위로 올림 */
   transition: background-color 0.3s ease;
 }
 
-.start-play-button:hover {
-  background-color: #6a63ed;
+.nav-button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
-/* 플레이 모아보기 섹션 */
-.view-all-play-section .play-categories-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* 최소 100px, 반응형 */
-  gap: 15px;
-  justify-content: center; /* 그리드 항목 가운데 정렬 */
+.nav-button.left-arrow {
+  left: 10px;
 }
 
-.play-category-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background-color: #fefefe;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  border: 1px solid #eee;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+.nav-button.right-arrow {
+  right: 10px;
 }
 
-.play-category-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-}
-
-.play-category-item .category-image {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 5px;
-  margin-bottom: 8px;
-}
-
-.play-category-item .category-title {
-  font-size: 14px;
-  font-weight: bold;
-  color: #444;
-}
-
-/* 하단 내비게이션 바 (HomeScreen의 스타일과 동일) */
-.bottom-nav-bar {
+/* 하단 버튼 섹션 스타일 */
+.bottom-buttons-section {
   display: flex;
   justify-content: space-around;
-  align-items: center;
-  background-color: #ffffff;
-  padding: 10px 0;
-  border-top: 1px solid #eee;
-  position: sticky; /* 또는 fixed */
-  bottom: 0;
   width: 100%;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+  /* max-width: 600px; */ /* max-width 제거 또는 조정하여 유연성 높임 */
+  padding: 1.5vmin 0; /* 화면 비율에 비례하는 padding */
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  min-height: 60px; /* 최소 높이 설정으로 작은 화면에서도 형태 유지 */
 }
 
-.bottom-nav-bar .nav-item {
+/* 개별 액션 버튼 스타일 */
+.action-button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 12px;
-  color: #999;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  padding: 0.5vmin; /* 화면 비율에 비례하는 padding */
   cursor: pointer;
-  min-width: 60px;
+  transition: transform 0.2s ease;
+  flex: 1;
+  /* max-width: 120px; */ /* max-width 제거 또는 조정 */
+  min-width: 80px; /* 버튼의 최소 너비 설정 */
 }
 
-.bottom-nav-bar .nav-item.active {
-  color: #7a73ff;
+.action-button.primary-action {
+  background-color: #ffc107; /* 시작하기 버튼 강조색 */
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(255, 193, 7, 0.4);
   font-weight: bold;
 }
 
-.bottom-nav-bar .nav-item span {
-  margin-top: 5px;
+.action-button.primary-action .button-text {
+  color: #fff; /* 텍스트 색상도 흰색으로 */
+  font-size: 2.8vmin; /* 텍스트 크기를 vmin으로 설정 */
 }
 
-.bottom-nav-bar .nav-item > span:first-child {
-    font-size: 24px;
+.action-button:hover {
+  transform: translateY(-3px);
 }
 
-.bottom-nav-bar .play-button-wrapper {
-    position: relative;
-    top: -20px;
-    margin: 0 10px;
+.action-button .button-icon {
+  font-size: 5vmin; /* 아이콘 크기를 vmin으로 설정 */
+  margin-bottom: 0.5vmin; /* 마진도 vmin으로 설정 */
 }
 
-.bottom-nav-bar .play-button-large {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #7a73ff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    border: 4px solid #f0f2f5;
+.action-button .button-text {
+  font-size: 2.2vmin; /* 텍스트 크기를 vmin으로 설정 */
+  color: #555;
+  font-weight: bold;
 }
 
-.bottom-nav-bar .play-button-large.active { /* 플레이 버튼 활성화 시 배경색 유지 */
-  background-color: #7a73ff;
-  color: white;
-}
-
-
-/* ---------------------------------------------------- */
-/* 미디어 쿼리 - 모바일 화면 최적화 (PlayScreen 전용) */
-/* ---------------------------------------------------- */
-
-/* 화면 너비 768px 이하 (태블릿 및 모바일) */
+/* 반응형 디자인 (모바일, 태블릿 등) */
 @media (max-width: 768px) {
   .play-content {
     padding: 15px;
   }
 
+  .step-tabs-section {
+    padding: 5px;
+  }
+
+  .step-tab-button {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  .main-viewer-section {
+    padding-bottom: 85%;
+  }
+
+  .nav-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nav-button svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .viewer-content-box {
+    padding: 15px;
+    max-width: 80%;
+  }
+
+  .viewer-content-box p {
+    font-size: 1em;
+  }
+
+  .bottom-buttons-section {
+    flex-wrap: nowrap; /* 줄바꿈 방지 */
+    justify-content: space-around; /* 다시 space-around로 */
+    padding: 10px; /* px 단위 유지하거나 vmin으로 조정 */
+    min-height: 50px; /* 작은 화면에서의 최소 높이 */
+  }
+
+  .action-button {
+    padding: 5px; /* px 단위 유지하거나 vmin으로 조정 */
+    margin: 0 2px; /* 버튼 간 마진 조정 */
+    min-width: unset; /* 최소 너비 초기화 */
+    max-width: 100px; /* 필요에 따라 max-width 다시 설정 */
+  }
+
+  .action-button .button-icon {
+    font-size: 4vmin; /* vmin 유지 또는 px로 고정 */
+  }
+
+  .action-button .button-text {
+    font-size: 1.8vmin; /* vmin 유지 또는 px로 고정 */
+  }
+
+  .action-button.primary-action .button-text {
+    font-size: 2.2vmin; /* vmin 유지 또는 px로 고정 */
+  }
+}
+
+@media (max-width: 480px) {
   .play-header .logo {
     font-size: 24px;
   }
 
-  .play-profile-summary {
-    padding: 15px;
+  .play-header .settings-icon {
+    font-size: 20px;
   }
 
-  .play-profile-summary .profile-character {
-    width: 60px;
-    height: 60px;
+  .step-tab-button {
+    font-size: 12px;
+    padding: 6px 8px;
   }
 
-  .play-profile-summary .profile-name {
-    font-size: 18px;
+  .main-viewer-section {
+    padding-bottom: 90%;
   }
 
-  .play-profile-summary .level-info {
-    font-size: 13px;
+  .nav-button {
+    width: 35px;
+    height: 35px;
   }
 
-  .card {
-    padding: 15px;
+  .nav-button svg {
+    width: 24px;
+    height: 24px;
   }
 
-  .card .card-header h3 {
-    font-size: 18px;
-  }
-
-  .play-item-image {
-    width: 100px;
-    height: 80px;
-  }
-
-  .play-item-details {
+  .viewer-content-box {
     padding: 10px;
+    max-width: 90%;
   }
 
-  .play-item-age {
-    font-size: 11px;
+  .viewer-content-box p {
+    font-size: 0.9em;
   }
 
-  .play-item-title {
-    font-size: 15px;
+  .bottom-buttons-section {
+    padding: 8px; /* px 단위 유지하거나 vmin으로 조정 */
+    min-height: 45px; /* 더 작은 화면에서의 최소 높이 */
   }
 
-  .play-item-description {
-    font-size: 12px;
+  .action-button {
+    padding: 3px; /* px 단위 유지하거나 vmin으로 조정 */
+    margin: 0 1px; /* 버튼 간 마진 조정 */
+    max-width: 90px;
   }
 
-  .start-play-button {
-    padding: 6px 12px;
-    font-size: 13px;
+  .action-button .button-icon {
+    font-size: 3.5vmin; /* vmin 유지 또는 px로 고정 */
   }
 
-  .play-category-item .category-image {
-    width: 70px;
-    height: 70px;
+  .action-button .button-text {
+    font-size: 1.5vmin; /* vmin 유지 또는 px로 고정 */
   }
 
-  .play-category-item .category-title {
-    font-size: 13px;
-  }
-}
-
-/* 화면 너비 500px 이하 (주로 스마트폰) */
-@media (max-width: 500px) {
-  .play-content {
-    padding: 10px;
-  }
-
-  /* 오늘의 플레이 아이템이 세로로 쌓이도록 변경 */
-  .recommended-play-item {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .play-item-image {
-    width: 100%; /* 너비 100% */
-    height: 150px; /* 높이 고정 */
-    border-radius: 10px 10px 0 0;
-  }
-
-  .play-item-details {
-    width: 100%;
-    box-sizing: border-box; /* 패딩 포함 너비 계산 */
-  }
-
-  .play-item-age {
-    font-size: 12px;
-  }
-
-  .play-item-title {
-    font-size: 16px;
-  }
-
-  .play-item-description {
-    font-size: 13px;
-  }
-
-  .start-play-button {
-    width: 80%; /* 버튼 너비 줄이기 */
-    margin-top: 10px;
-  }
-
-  .play-categories-grid {
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* 카테고리 아이템 크기 줄이기 */
-    gap: 10px;
-  }
-
-  .play-category-item .category-image {
-    width: 60px;
-    height: 60px;
-  }
-
-  .play-category-item .category-title {
-    font-size: 12px;
-  }
-
-  .bottom-nav-bar .nav-item {
-    min-width: 50px;
-  }
-  .bottom-nav-bar .nav-item > span:first-child {
-    font-size: 22px;
-  }
-
-  .bottom-nav-bar .play-button-wrapper {
-      top: -15px;
-      margin: 0 5px;
-  }
-
-  .bottom-nav-bar .play-button-large {
-      width: 50px;
-      height: 50px;
-      font-size: 25px;
-  }
-}
-
-/* 화면 너비 320px 이하 (아주 작은 스마트폰) */
-@media (max-width: 320px) {
-  .play-header .logo {
-    font-size: 22px;
-  }
-
-  .play-profile-summary .profile-name {
-    font-size: 16px;
-  }
-
-  .play-item-image {
-    height: 120px;
-  }
-
-  .play-item-title {
-    font-size: 14px;
-  }
-
-  .play-item-description {
-    font-size: 11px;
-  }
-
-  .start-play-button {
-    width: 90%;
-  }
-
-  .play-categories-grid {
-    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-  }
-
-  .play-category-item .category-image {
-    width: 50px;
-    height: 50px;
-  }
-
-  .bottom-nav-bar .nav-item {
-    font-size: 10px;
-    min-width: 40px;
+  .action-button.primary-action .button-text {
+    font-size: 1.8vmin; /* vmin 유지 또는 px로 고정 */
   }
 }
