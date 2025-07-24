@@ -8,28 +8,39 @@
 .input-group {
   position: relative;
   width: 100%; /* Ensure input-group takes full width of the container */
+  margin-bottom: 18px;
+  text-align: left;
 }
 
-.form-input {
+.input-group label {
+  font-weight: 600;
+  color: #6d4aff;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.input-group input,
+.input-group input[type="number"] {
   width: 100%;
-  padding-top: 20px;
-  padding-right: 10px;
-  padding-left: 10px;
-  padding-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 13px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  /* Corrected transition */
-  height: 60px;
-  background-color: transparent;
+  padding: 12px 16px;
+  border: 2px solid #e0d7ff;
+  border-radius: 12px;
+  font-size: 1rem;
+  margin-top: 4px;
   outline: none;
-  box-sizing: border-box; /* Restored */
+  transition: border 0.2s;
+  box-sizing: border-box;
 }
 
-.form-input:focus {
-  border-color: #3B88C3; /* blue border on focus */
-  border-width: 2px;
+.input-group input:focus {
+  border-color: #b07cff;
+}
+
+.input-group input[type="password"] {
+  border-color: #ffd6e0;
+}
+.input-group input[type="password"]:focus {
+  border-color: #ff7ccf;
 }
 
 .floating-label {
@@ -43,8 +54,8 @@
   padding: 0.5px;
 }
 
-.form-input:focus + .floating-label,
-.form-input.has-content + .floating-label {
+.input-group input:focus + .floating-label,
+.input-group input.has-content + .floating-label {
   top: 0px;
   font-size: 10px;
   color: #aaa;
@@ -58,22 +69,22 @@
   align-items: center; /* Restored */
 }
 
-.login-form button {
-  width: 80%;
-  padding: 12px;
-  margin: 30px auto;
-  background-color: #adb5be;
-  color: white;
+.login-button {
+  width: 100%;
+  padding: 14px 0;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 12px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(90deg, #b07cff 0%, #ff7ccf 100%);
+  margin: 18px 0 10px 0;
+  box-shadow: 0 4px 16px 0 rgba(176, 124, 255, 0.12);
   cursor: pointer;
-  height: 50px;
-  /* align-items: center; This property is for flex containers, not items */
+  transition: background 0.2s;
 }
-
-.login-form button:hover {
-  background-color: #3B88C3;
+.login-button:hover {
+  background: linear-gradient(90deg, #a06be0 0%, #e06bb0 100%);
 }
 
 /* --- Styles for vertically merged inputs --- */
@@ -99,8 +110,25 @@
 }
 
 .error-message {
-  color: red;
-  font-size: 12px;
-  margin-top: 10px;
+  color: #ff4d6d;
+  font-size: 14px;
+  margin-bottom: 8px;
   text-align: left;
+}
+
+.signup-text {
+  font-size: 15px;
+  color: #888;
+  margin-top: 10px;
+  text-align: center;
+}
+.signup-text a {
+  color: #b07cff;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 4px;
+  transition: color 0.2s;
+}
+.signup-text a:hover {
+  color: #ff7ccf;
 }
