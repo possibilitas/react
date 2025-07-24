@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-route
 import LoginPage from '../features/auth/pages/LoginPage';
 import SignupPage from '../features/auth/pages/SignupPage';
 import HomePage from './HomePage'; // Corrected
-import App from './App';           // Corrected
+import App from './App';          // Corrected
 
 import BehaviorLogScreen from '../features/adult/pages/BehaviorLogScreen';
 import ParentEduScreen from '../features/adult/pages/ParentEduScreen';
@@ -14,15 +14,10 @@ import StatsScreen from '../features/adult/pages/StatsScreen';
 import ShopScreen from '../features/adult/pages/ShopScreen';
 import CustomScreen from '../features/adult/pages/CustomScreen'; 
 
-<<<<<<< HEAD
 import BottomNavigation from '../components/BottomNavigation'; 
 import ThirdGamePage from '../features/thirdgame/pages/ThirdGamePage';
-=======
-import BottomNavigation from '../components/BottomNavigation';
-import ThirdGamePage from '../features/thirdgame/pages/ThirdGamePage'; 
-import FirstGamePage from '../features/firstgame/pages/FirstGamePage'; // ⇐ 추가
-import SecondGamePage from '../features/secondgame/pages/SecondGamePage'; // ⇐ 추가
->>>>>>> 021d34243960d935b74f4ba4802f76538e241520
+import FirstGamePage from '../features/firstgame/pages/FirstGamePage'; // 추가된 부분
+import SecondGamePage from '../features/secondgame/pages/SecondGamePage'; // 추가된 부분
 
 function AppRouter() {
   return (
@@ -66,15 +61,11 @@ function MainRoutes() {
         element={withBottomNav(BehaviorLogScreen, 'behaviorLog')}
       />
 
-<<<<<<< HEAD
+      {/* 게임 화면 추가 (하단바 제외) */}
+      <Route path="/firstgame" element={<FirstGamePage />} />
+      <Route path="/secondgame" element={<SecondGamePage />} />
+
       {/* 부모 교육 화면 (하단바 포함) */}
-=======
-      
-      <Route path="/firstgame" element={<FirstGamePage />} /> {}
-
-      <Route path="/secondgame" element={<SecondGamePage />} /> {}
-
->>>>>>> 021d34243960d935b74f4ba4802f76538e241520
       <Route
         path="/parentEdu"
         element={withBottomNav(ParentEduScreen, 'parentEdu')}
