@@ -3,12 +3,12 @@ import '../../../styles/ParentEduScreen.css';
 
 function DevelopmentChecklistScreen({ onNavClick, currentScreen }) {
   const [userAnswers, setUserAnswers] = useState({});
-  // const [submitted, setSubmitted] = useState(false); // 이 줄은 제거되었습니다.
   const [riskLevel, setRiskLevel] = useState('');
   const [recommendation, setRecommendation] = useState('');
   const [unansweredQuestions, setUnansweredQuestions] = useState([]);
   const [currentView, setCurrentView] = useState('start'); // 'start', 'quiz', 'result' 뷰 관리
   const [lastScore, setLastScore] = useState(null); // 최근 기록 점수
+  const [showInfoModal, setShowInfoModal] = useState(false); // New state for info modal
 
   const questions = [
     { id: 1, text: '아이와 눈을 자연스럽게 맞추나요?', isCritical: false, area: '사회적 상호작용 및 정서 공유' },
@@ -104,7 +104,6 @@ function DevelopmentChecklistScreen({ onNavClick, currentScreen }) {
 
   const startQuiz = () => {
     setUserAnswers({}); // 답변 초기화
-    // setSubmitted(false); // 이 줄을 제거합니다.
     setUnansweredQuestions([]); // 미답변 질문 초기화
     setRiskLevel(''); // 위험 수준 초기화
     setRecommendation(''); // 권장 사항 초기화
@@ -113,17 +112,23 @@ function DevelopmentChecklistScreen({ onNavClick, currentScreen }) {
 
   const resetToStartView = () => {
     setUserAnswers({}); // 답변 초기화
-    // setSubmitted(false); // 이 줄을 제거합니다.
     setUnansweredQuestions([]); // 미답변 질문 초기화
     setRiskLevel(''); // 위험 수준 초기화
     setRecommendation(''); // 권장 사항 초기화
     setCurrentView('start'); // 시작 뷰로 전환
   };
 
+  const toggleInfoModal = () => {
+    setShowInfoModal(!showInfoModal);
+  };
+
   return (
     <div className="parent-edu-screen-container">
       <header className="parent-edu-header">
         <h1 className="logo">𝒁𝒆𝒓𝒐𝑫𝒐𝒔𝒆</h1>
+        <div className="settings-icon" onClick={toggleInfoModal}>
+          ? {/* Info icon or similar, or use a Font Awesome icon if available */}
+        </div>
       </header>
 
       <main className="parent-edu-content">
@@ -137,7 +142,7 @@ function DevelopmentChecklistScreen({ onNavClick, currentScreen }) {
                 <p className="disclaimer">
                   <strong>필수 고지 사항:</strong> 본 체크리스트는 자녀의 발달에 대한 부모님의 이해를 돕기 위한 참고용 선별 도구입니다. 이 결과는 의학적 진단이 아니며, 진단을 대체할 수 없습니다. 자녀의 발달에 대해 조금이라도 우려되는 점이 있다면, 반드시 소아청소년과 의사 또는 발달 전문가와 상담하시기 바랍니다.
                 </p>
-                <p className="instructions">각 문항을 읽고 자녀의 평소 행동에 가장 가까운 것을 선택해 주세요.</p>
+                <p className="instructions">각 문항을 읽고 자녀의 평소 행동에 <br></br>가장 가까운 것을 선택해 주세요.</p>
               </div>
               <button className="start-quiz-button in-card-button" onClick={startQuiz}> {/* in-card-button 클래스 추가 */}
                 설문 시작하기
@@ -258,6 +263,33 @@ function DevelopmentChecklistScreen({ onNavClick, currentScreen }) {
           </section>
         )}
       </main>
+
+      {/* Info Modal */}
+      {showInfoModal && (
+        <div className="info-modal-overlay" onClick={toggleInfoModal}>
+          <div className="info-modal-content" onClick={(e) => e.stopPropagation()}>
+            <h4>체크리스트 문항 정보</h4>
+            [인용]<p><strong>결정적 문항 (Critical Items):<br></br></strong> 3, 5, 8, 9, 11번 (총 5개) </p>
+            <br />
+            <h5>구성 이유 및 주요 근거:</h5>
+            <ul>
+              <li><strong>1. 눈 맞춤:</strong> 사회적 관계의 가장 기초적인 기술입니다. [cite_start]ASD 아동은 눈 맞춤의 빈도와 질이 현저히 낮습니다. [cite: 93]</li>
+              <li><strong>2. 표정 모방:</strong> 타인의 감정을 이해하고 공감하는 능력의 초기 형태입니다. [cite_start]ASD 아동은 얼굴 표정과 같은 사회적 단서 모방에 어려움을 보입니다. [cite: 93]</li>
+              <li><strong>3. 관심 공유:</strong> 타인과 관심의 대상을 공유하려는 의도입니다. [cite_start]ASD의 가장 핵심적인 초기 결함 중 하나입니다. [cite: 93]</li>
+              <li><strong>4. 상호작용 놀이:</strong> 사회적 즐거움과 호혜성의 지표입니다. [cite_start]ASD 아동은 사회적 놀이 자체에 대한 동기가 부족할 수 있습니다. [cite: 93]</li>
+              <li><strong>5. [cite_start]가리키기 따라 보기:</strong> 비언어적 의사소통을 이해하는 능력으로, ASD 아동은 타인의 손짓(포인팅)이 의도를 담고 있음을 이해하기 어려워합니다. [cite: 93]</li>
+              <li><strong>6. 이름에 반응:</strong> 사회적 자극에 대한 선택적 주의력입니다. [cite_start]ASD 아동은 사회적 자극(이름 부르기)보다 환경 소음에 더 반응하는 경향이 있습니다. [cite: 93]</li>
+              <li><strong>7. 간단한 지시 이해:</strong> 언어적 소통을 이해하는 능력입니다. [cite_start]사회적 맥락 속에서 언어를 이해하는 데 어려움이 있을 수 있습니다. [cite: 94]</li>
+              <li><strong>8. 또래 관심:</strong> 사회적 동기의 중요한 지표입니다. [cite_start]ASD 아동은 사물에 대한 관심이 사람(특히 또래)에 대한 관심보다 우세한 경우가 많습니다. [cite: 94]</li>
+              <li><strong>9. 상상 놀이:</strong> '마음 이론'의 기초가 되는 고차원적 사고 능력입니다. [cite_start]ASD 아동은 기능적이거나 감각적인 놀이에 머물고 상징 놀이 발달이 지연됩니다. [cite: 94]</li>
+              <li><strong>10. 제한된 관심사:</strong> 관심의 폭이 좁고 특정 사물이나 주제에 몰두하는 경향입니다. [cite_start]ASD의 주요 진단 기준 중 하나입니다. [cite: 94]</li>
+              <li><strong>11. 반복 행동:</strong> 감각 추구나 자기 조절을 위한 비기능적 행동입니다. [cite_start]최근 연구에서 사회성 결함만큼이나 중요한 조기 지표로 강조됩니다. [cite: 94]</li>
+              <li><strong>12. 변화에 대한 저항:</strong> 예측 불가능한 상황에 대한 불안과 경직성입니다. [cite_start]ASD의 주요 진단 기준 중 하나입니다. [cite: 94]</li>
+            </ul>
+            <button onClick={toggleInfoModal} className="close-modal-button">닫기</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

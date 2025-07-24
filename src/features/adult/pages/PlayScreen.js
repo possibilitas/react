@@ -1,110 +1,216 @@
-import React from 'react';
-import '../../../styles/PlayScreen.css'; // 화면 스타일을 위한 CSS 파일입니다.
+// src/components/screens/PlayScreen.js
 
+import React, { useState } from 'react';
+import '../../../styles/PlayScreen.css';
+import { ChevronLeft, ChevronRight, Settings } from 'lucide-react';
 
-// 아이콘을 위한 임시 placeholder (실제 앱에서는 react-icons 같은 라이브러리 사용 권장)
-const GearIcon = () => <span role="img" aria-label="settings">⚙️</span>;
+// 이미지 파일 임포트
+import dayBackgroundImage from '../../assets/낮.png';
+import defaultBackgroundImage from '../../assets/배경샘플.png';
+import nightBackgroundImage from '../../assets/밤.png';
+import characterImage from '../../assets/캐릭터샘플.png';
 
-
+/**
+ * PlayScreen 컴포넌트는 놀이 화면의 UI를 렌더링합니다.
+ * 여러 단계의 뷰어를 포함하며, 좌우 버튼으로 뷰어를 전환할 수 있습니다.
+ */
 function PlayScreen({ onNavClick, currentScreen }) {
-  // 오늘의 추천 플레이 데이터 (임시)
-  const recommendedPlays = [
+  // 현재 활성화된 뷰어의 인덱스를 관리하는 상태 (0부터 시작)
+  const [currentViewerIndex, setCurrentViewerIndex] = useState(0);
+  // 캐릭터의 좌우 움직임을 위한 상태 추가
+  const [characterPosition, setCharacterPosition] = useState(0); // 0: 중앙, -1: 왼쪽, 1: 오른쪽
+
+  // 슬라이드 애니메이션 방향을 위한 상태 추가
+  const [slideDirection, setSlideDirection] = useState(null); // 'left' 또는 'right'
+
+  // 뷰어 데이터 (각 뷰어의 콘텐츠와 스타일을 정의)
+  const viewerData = [
+    {
+      id: 0,
+      step: '1단계',
+      backgroundColor: '#e0f7fa', // 옅은 하늘색
+      content: '게임 소개 이미지 또는 글 (1단계)',
+      buttonText: '시작하기',
+      backgroundImage: dayBackgroundImage, // 1단계 배경 이미지
+      gameRoute: 'firstgame', // 1단계에 해당하는 게임 라우트 추가
+    },
     {
       id: 1,
-      image: 'https://via.placeholder.com/100x80?text=Play1', // 이미지 URL
-      title: '놀이를 통해 배우는 정서 표현',
-      description: '부정적인 감정을 놀이로 극복하는 방법을 알려줍니다.',
-      age: '4~6세 추천',
+      step: '2단계',
+      backgroundColor: '#e8f5e9', // 옅은 초록색
+      content: '게임 소개 이미지 또는 글 (2단계)',
+      buttonText: '시작하기',
+      backgroundImage: defaultBackgroundImage, // 2단계 배경 이미지
+      gameRoute: 'secondgame', // 2단계에 해당하는 게임 라우트 추가
     },
     {
       id: 2,
-      image: 'https://via.placeholder.com/100x80?text=Play2',
-      title: '숫자를 익히는 즐거운 모험',
-      description: '흥미진진한 게임으로 숫자를 쉽고 재미있게 배워요!',
-      age: '5~7세 추천',
+      step: '3단계',
+      backgroundColor: '#ffe0b2', // 옅은 주황색
+      content: '게임 소개 이미지 또는 글 (3단계)',
+      buttonText: '시작하기',
+      backgroundImage: nightBackgroundImage, // 3단계 배경 이미지
+      gameRoute: 'cardgame', // 3단계에 해당하는 게임 라우트 추가 (ThirdGamePage의 라우트 이름이 'cardgame'으로 Router.js에 정의되어 있음)
     },
-    // 더 많은 추천 콘텐츠를 추가할 수 있습니다.
   ];
 
-  // 플레이 모아보기 카테고리 데이터 (임시)
-  const playCategories = [
-    { id: 1, image: 'https://via.placeholder.com/80?text=Category1', title: '그림' },
-    { id: 2, image: 'https://via.placeholder.com/80?text=Category2', title: '숫자' },
-    { id: 3, image: 'https://via.placeholder.com/80?text=Category3', title: '동물' },
-    { id: 4, image: 'https://via.placeholder.com/80?text=Category4', title: '가족' },
-    { id: 5, image: 'https://via.placeholder.com/80?text=Category5', title: '색깔' },
-    { id: 6, image: 'https://via.placeholder.com/80?text=Category6', title: '친구' },
-    // 더 많은 카테고리를 추가할 수 있습니다.
-  ];
+  // 다음 뷰어로 이동하는 함수
+  const goToNextViewer = () => {
+    setSlideDirection('right'); // 오른쪽으로 슬라이드
+    setCurrentViewerIndex((prevIndex) =>
+      (prevIndex + 1) % viewerData.length
+    );
+  };
+
+  // 이전 뷰어로 이동하는 함수
+  const goToPreviousViewer = () => {
+    setSlideDirection('left'); // 왼쪽으로 슬라이드
+    setCurrentViewerIndex((prevIndex) =>
+      (prevIndex - 1 + viewerData.length) % viewerData.length
+    );
+  };
+
+  // 캐릭터 클릭 시 실행될 함수 정의
+  const handleCharacterClick = () => {
+    window.alert('캐릭터가 클릭되었습니다!');
+
+    // 캐릭터를 왼쪽으로 이동 (-1)
+    setCharacterPosition(-1);
+    // 0.5초 후 오른쪽으로 이동 (1)
+    setTimeout(() => {
+      setCharacterPosition(1);
+    }, 500); // 0.5초 후
+    // 1초 후 중앙으로 복귀 (0)
+    setTimeout(() => {
+      setCharacterPosition(0);
+    }, 1000); // 1초 후
+  };
+
+  // '꾸미기' 버튼 클릭 시 실행될 함수
+  const handleCustomClick = () => {
+    console.log('꾸미기 버튼이 클릭되었습니다! CustomScreen으로 이동합니다.');
+    onNavClick('custom'); // 'custom' 라우트로 이동 요청
+  };
+
+  // 탭 클릭 시 뷰어 변경 및 슬라이드 방향 설정
+  const handleTabClick = (index) => {
+    if (index > currentViewerIndex) {
+      setSlideDirection('right');
+    } else if (index < currentViewerIndex) {
+      setSlideDirection('left');
+    } else {
+      setSlideDirection(null); // 같은 탭 클릭 시 애니메이션 없음
+    }
+    setCurrentViewerIndex(index);
+  };
+
+  // 현재 활성화된 뷰어 데이터
+  const currentViewer = viewerData[currentViewerIndex];
+
+  // 캐릭터 위치에 따른 CSS 클래스 결정
+  const characterMoveClass =
+    characterPosition === -1 ? 'move-left' : characterPosition === 1 ? 'move-right' : '';
+
+  // '시작하기' 버튼 클릭 시 해당 게임 페이지로 이동하는 함수
+  const handleStartGame = () => {
+    if (currentViewer.gameRoute) {
+      onNavClick(currentViewer.gameRoute);
+    } else {
+      console.warn('현재 뷰어에 연결된 게임 라우트가 없습니다.');
+    }
+  };
 
   return (
     <div className="play-screen-container">
-      {/* 헤더 */}
+      {/* 헤더 섹션: '꾸미기' 버튼과 설정 아이콘 */}
       <header className="play-header">
-        <h1 className="logo">플레이</h1>
-        <div className="header-right">
-          <GearIcon className="settings-icon" />
-        </div>
+        <button
+          className="custom-button"
+          onClick={handleCustomClick}
+        >
+          꾸미기
+        </button>
+        <Settings
+          className="settings-icon"
+          onClick={() => onNavClick('homepage')}
+          style={{ cursor: 'pointer' }}
+        />
       </header>
 
       {/* 메인 콘텐츠 영역 */}
       <main className="play-content">
-        {/* 프로필 요약 (HomeScreen과 유사하지만 더 간결하게) */}
-        <section className="play-profile-summary">
-          <div className="profile-image-wrapper">
-            <img src="https://via.placeholder.com/80?text=Dino" alt="Profile character" className="profile-character" />
-          </div>
-          <div className="profile-info">
-            <h2 className="profile-name">은우우공룡</h2>
-            <div className="level-info">
-              <span className="level-text">LV.3</span>
-              <div className="progress-bar-container">
-                <div className="progress-bar-fill" style={{ width: '85%' }}></div>
-              </div>
+        {/* 단계 탭 메뉴 */}
+        <section className="step-tabs-section">
+          {viewerData.map((viewer, index) => (
+            <button
+              key={viewer.id}
+              className={`step-tab-button ${currentViewerIndex === index ? 'active' : ''}`}
+              onClick={() => handleTabClick(index)}
+            >
+              {viewer.step}
+            </button>
+          ))}
+        </section>
+
+        {/* 메인 뷰어 섹션 (슬라이더) */}
+        <section className="main-viewer-section" style={{ backgroundColor: currentViewer.backgroundColor }}>
+          {/* key prop을 사용하여 컴포넌트가 바뀔 때마다 재렌더링 유도 */}
+          <div
+            key={currentViewer.id}
+            className={`background-image-container ${slideDirection === 'left' ? 'slide-in-left' : slideDirection === 'right' ? 'slide-in-right' : ''}`}
+            style={{
+              backgroundImage: `url(${currentViewer.backgroundImage})`,
+              backgroundPosition: 'center center', // 배경 위치를 항상 중앙으로 고정
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+            }}
+          >
+            {/* 캐릭터 이미지 */}
+            <img
+              src={characterImage}
+              alt="캐릭터"
+              className={`character-image ${characterMoveClass}`}
+              onClick={handleCharacterClick}
+              style={{ cursor: 'pointer' }}
+            />
+
+            {/* 좌측 화살표 버튼 */}
+            <button
+              className="nav-button left-arrow"
+              onClick={goToPreviousViewer}
+            >
+              <ChevronLeft size={36} color="#fff" />
+            </button>
+            {/* 우측 화살표 버튼 */}
+            <button
+              className="nav-button right-arrow"
+              onClick={goToNextViewer}
+            >
+              <ChevronRight size={36} color="#fff" />
+            </button>
+
+            {/* 뷰어 콘텐츠 */}
+            <div className="viewer-content-box">
+              <p>{currentViewer.content}</p>
             </div>
           </div>
         </section>
 
-        {/* 오늘의 플레이 섹션 */}
-        <section className="today-play-section card">
-          <div className="card-header">
-            <h3>오늘의 플레이</h3>
-            <span className="view-all-text">모두 보기 &gt;</span>
-          </div>
-          <div className="recommended-plays-list">
-            {recommendedPlays.map(play => (
-              <div key={play.id} className="recommended-play-item">
-                <img src={play.image} alt={play.title} className="play-item-image" />
-                <div className="play-item-details">
-                  <p className="play-item-age">{play.age}</p>
-                  <h4 className="play-item-title">{play.title}</h4>
-                  <p className="play-item-description">{play.description}</p>
-                  <button className="start-play-button">시작하기</button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* 플레이 모아보기 섹션 */}
-        <section className="view-all-play-section card">
-          <div className="card-header">
-            <h3>플레이 모아보기</h3>
-            <span className="view-all-text">모두 보기 &gt;</span>
-          </div>
-          <div className="play-categories-grid">
-            {playCategories.map(category => (
-              <div key={category.id} className="play-category-item">
-                <img src={category.image} alt={category.title} className="category-image" />
-                <span className="category-title">{category.title}</span>
-              </div>
-            ))}
-          </div>
+        {/* 하단 버튼 섹션 */}
+        <section className="bottom-buttons-section">
+          <button className="action-button" onClick={() => onNavClick('achievement')}>
+            <span className="button-icon">📚</span>
+            <span className="button-text">업적</span>
+          </button>
+          <button className="action-button primary-action" onClick={handleStartGame}> {/* '시작하기' 버튼 클릭 핸들러 연결 */}
+            <span className="button-text">{currentViewer.buttonText}</span>
+          </button>
+          <button className="action-button" onClick={() => onNavClick('shop')}>
+            <span className="button-icon">⭐</span>
+            <span className="button-text">상점</span>
+          </button>
         </section>
       </main>
-
-      {/* 기존 하단 네비게이션 바 유지 */}
-      {/*<BottomNavigation onNavClick={onNavClick} currentScreen={currentScreen} />*/}
     </div>
   );
 }

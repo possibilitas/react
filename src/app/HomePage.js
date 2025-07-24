@@ -1,13 +1,7 @@
 // HomePage.js
 import React from 'react';
 import '../styles/HomePage.css'; // 기존 스타일 유지
-import BottomNavigation from '../components/BottomNavigation';
 import zerodose_img from '../features/assets/zerodose_logo.svg';
-import { useNavigate } from 'react-router-dom';
-
-
-// 임시 아이콘
-const GearIcon = () => <span role="img" aria-label="settings">⚙️</span>;
 
 export default function HomePage({ onNavClick, currentScreen }) {
   return (
@@ -120,8 +114,6 @@ export default function HomePage({ onNavClick, currentScreen }) {
         </section>
       </main>
 
-      {/* 기존 하단 네비게이션 바 유지 */}
-      {/*<BottomNavigation onNavClick={onNavClick} currentScreen={currentScreen} />*/}
     </div>
   );
 }

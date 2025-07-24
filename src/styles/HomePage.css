@@ -38,6 +38,7 @@
   padding: 20px;
   overflow-y: auto;
   padding-bottom: 80px; /* 하단 네비게이션 바 공간 확보 */
+  height: 0;
 }
 
 .card {
