@@ -32,6 +32,7 @@ function PlayScreen({ onNavClick, currentScreen }) {
       content: '게임 소개 이미지 또는 글 (1단계)',
       buttonText: '시작하기',
       backgroundImage: dayBackgroundImage, // 1단계 배경 이미지
+      gameRoute: 'firstgame', // 1단계에 해당하는 게임 라우트 추가
     },
     {
       id: 1,
@@ -40,6 +41,7 @@ function PlayScreen({ onNavClick, currentScreen }) {
       content: '게임 소개 이미지 또는 글 (2단계)',
       buttonText: '시작하기',
       backgroundImage: defaultBackgroundImage, // 2단계 배경 이미지
+      gameRoute: 'secondgame', // 2단계에 해당하는 게임 라우트 추가
     },
     {
       id: 2,
@@ -48,6 +50,7 @@ function PlayScreen({ onNavClick, currentScreen }) {
       content: '게임 소개 이미지 또는 글 (3단계)',
       buttonText: '시작하기',
       backgroundImage: nightBackgroundImage, // 3단계 배경 이미지
+      gameRoute: 'cardgame', // 3단계에 해당하는 게임 라우트 추가 (ThirdGamePage의 라우트 이름이 'cardgame'으로 Router.js에 정의되어 있음)
     },
   ];
 
@@ -107,6 +110,15 @@ function PlayScreen({ onNavClick, currentScreen }) {
   // 캐릭터 위치에 따른 CSS 클래스 결정
   const characterMoveClass =
     characterPosition === -1 ? 'move-left' : characterPosition === 1 ? 'move-right' : '';
+
+  // '시작하기' 버튼 클릭 시 해당 게임 페이지로 이동하는 함수
+  const handleStartGame = () => {
+    if (currentViewer.gameRoute) {
+      onNavClick(currentViewer.gameRoute);
+    } else {
+      console.warn('현재 뷰어에 연결된 게임 라우트가 없습니다.');
+    }
+  };
 
   return (
     <div className="play-screen-container">
@@ -186,11 +198,11 @@ function PlayScreen({ onNavClick, currentScreen }) {
 
         {/* 하단 버튼 섹션 */}
         <section className="bottom-buttons-section">
-          <button className="action-button" onClick={() => onNavClick('achievement')}> {/* */}
+          <button className="action-button" onClick={() => onNavClick('achievement')}>
             <span className="button-icon">📚</span>
-            <span className="button-text">업적</span> {/* */}
+            <span className="button-text">업적</span>
           </button>
-          <button className="action-button primary-action">
+          <button className="action-button primary-action" onClick={handleStartGame}> {/* '시작하기' 버튼 클릭 핸들러 연결 */}
             <span className="button-text">{currentViewer.buttonText}</span>
           </button>
           <button className="action-button" onClick={() => onNavClick('shop')}>
