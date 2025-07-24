@@ -32,7 +32,9 @@ function LoginPage() {
         onClick={handleIconClick}
       />
       <div className="login-box">
-        <h1>Welcome ZeroDose</h1>
+        <h1>ZeroDose Login</h1>
+        <div className="cute-illustration">🦄</div>
+        <p className="login-desc">우리 놀이터에 오신 걸 환영해요!</p>
         <LoginForm onLoginSuccess={handleLoginSuccess} />
       </div>
     </div>
