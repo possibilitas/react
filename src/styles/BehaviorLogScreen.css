@@ -1,6 +1,6 @@
 /* BehaviorLogScreen.css */
 
-/* HomeScreen.css와 공유되는 기본적인 스타일 (중복을 피하기 위해 App.css에 공통 스타일을 넣을 수도 있습니다) */
+/* HomeScreen.css와 공유되는 기본적인 스타일 */
 .log-screen-container {
   display: flex;
   flex-direction: column;
@@ -10,23 +10,26 @@
   color: #333;
 }
 
-.log-header { /* HomeScreen의 home-header와 동일 */
+.log-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
   background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0; /* Add this line */
+  height: 60px; /* Add this line for a fixed height, similar to ParentEduScreen */
+  box-sizing: border-box; /* Add this line to include padding in the height */
 }
 
-.log-header .logo { /* HomeScreen의 home-header .logo와 동일 */
+.log-header .logo {
   font-size: 28px;
   font-weight: bold;
   color: #7a73ff;
   margin: 0;
 }
 
-.log-header .settings-icon { /* HomeScreen의 home-header .settings-icon과 동일 */
+.log-header .settings-icon {
   font-size: 24px;
   cursor: pointer;
   color: #666;
@@ -36,11 +39,13 @@
   flex-grow: 1;
   padding: 20px;
   overflow-y: auto;
-  padding-bottom: 80px; /* 하단 네비게이션 바 공간 확보 */
-  height: 0;
+  /* Adjust height calculation based on header height (60px) and a typical bottom navigation height (e.g., 80px), assuming 0px bottom offset */
+  height: calc(100vh - 60px - 80px - 0px); /* Adjust this line to match ParentEduScreen's content height calculation logic */
+  padding-bottom: 95px; /* 90px에서 95px로 증가 */
+  box-sizing: border-box; /* Add this line for consistent box model */
 }
 
-.card { /* HomeScreen의 card와 동일 */
+.card {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 15px;
@@ -72,7 +77,7 @@
   font-size: 15px;
   cursor: pointer;
   transition: all 0.3s ease;
-  min-width: 80px; /* 버튼 최소 너비 */
+  min-width: 80px;
 }
 
 .behavior-type-button.selected {
@@ -94,8 +99,8 @@
   font-size: 16px;
   line-height: 1.5;
   margin-bottom: 20px;
-  resize: vertical; /* 세로 크기 조절 가능 */
-  box-sizing: border-box; /* 패딩이 너비에 포함 */
+  resize: vertical;
+  box-sizing: border-box;
 }
 
 .log-textarea::placeholder {
@@ -162,17 +167,17 @@
 }
 
 .date-list-wrapper {
-  overflow-x: auto; /* 가로 스크롤 허용 */
-  -webkit-overflow-scrolling: touch; /* iOS 스크롤 부드럽게 */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   margin-bottom: 20px;
-  padding-bottom: 10px; /* 스크롤 바 공간 */
+  padding-bottom: 10px;
 }
 
 .date-list {
   display: flex;
   gap: 10px;
-  white-space: nowrap; /* 항목들이 한 줄에 유지되도록 */
-  padding-bottom: 5px; /* 스크롤바와 내용 겹치지 않게 */
+  white-space: nowrap;
+  padding-bottom: 5px;
 }
 
 .date-item {
@@ -180,8 +185,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 60px; /* 각 날짜 아이템의 너비 */
-  height: 70px; /* 각 날짜 아이템의 높이 */
+  min-width: 60px;
+  height: 70px;
   border: 1px solid #eee;
   border-radius: 10px;
   background-color: #f9f9f9;
@@ -235,14 +240,14 @@
   color: white;
 }
 
-.log-entry .log-type.positive { /* 긍정 */
-  background-color: #6a5acd; /* 보라색 */
+.log-entry .log-type.positive {
+  background-color: #6a5acd;
 }
-.log-entry .log-type.negative { /* 부정 */
-  background-color: #ff6347; /* 붉은색 */
+.log-entry .log-type.negative {
+  background-color: #ff6347;
 }
-.log-entry .log-type.special { /* 특이행동 */
-  background-color: #3cb371; /* 녹색 */
+.log-entry .log-type.special {
+  background-color: #3cb371;
 }
 
 .log-entry .log-entry-text {
@@ -273,72 +278,19 @@
     font-size: 15px;
 }
 
-/* 하단 내비게이션 바 (HomeScreen의 스타일과 동일) */
-.bottom-nav-bar {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #ffffff;
-  padding: 10px 0;
-  border-top: 1px solid #eee;
-  position: sticky; /* 또는 fixed */
-  bottom: 0;
-  width: 100%;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.bottom-nav-bar .nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 12px;
-  color: #999;
-  cursor: pointer;
-  min-width: 60px;
-}
-
-.bottom-nav-bar .nav-item.active {
-  color: #7a73ff;
-  font-weight: bold;
-}
-
-.bottom-nav-bar .nav-item span {
-  margin-top: 5px;
-}
-
-.bottom-nav-bar .nav-item > span:first-child {
-    font-size: 24px;
-}
-
-.bottom-nav-bar .play-button-wrapper {
-    position: relative;
-    top: -20px;
-    margin: 0 10px;
-}
-
-.bottom-nav-bar .play-button-large {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #7a73ff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    border: 4px solid #f0f2f5;
-}
-
 /* ---------------------------------------------------- */
 /* 미디어 쿼리 - 모바일 화면 최적화 (BehaviorLogScreen 전용) */
 /* ---------------------------------------------------- */
 
 /* 화면 너비 768px 이하 (태블릿 및 모바일) */
 @media (max-width: 768px) {
+  .log-header { /* Add this block */
+    height: 55px; /* Adjust header height */
+  }
   .log-content {
-    padding: 15px; /* 전체 패딩 줄이기 */
+    padding: 15px;
+    height: calc(100vh - 55px - 75px - 0px); /* Header 55px, bottom nav 75px, bottom 0px */
+    padding-bottom: 90px; /* Adjust padding-bottom based on bottom nav height (75px) + 15px extra */
   }
 
   .log-header .logo {
@@ -350,7 +302,7 @@
   }
 
   .card {
-    padding: 15px; /* 카드 내부 패딩 줄이기 */
+    padding: 15px;
   }
 
   .behavior-type-button {
@@ -386,12 +338,17 @@
 
 /* 화면 너비 500px 이하 (주로 스마트폰) */
 @media (max-width: 500px) {
+  .log-header { /* Add this block */
+    height: 50px; /* Adjust header height */
+  }
   .log-content {
-    padding: 10px; /* 전체 패딩 더 줄이기 */
+    padding: 10px;
+    height: calc(100vh - 50px - 70px - 0px); /* Header 50px, bottom nav 70px, bottom 0px */
+    padding-bottom: 85px; /* Adjust padding-bottom based on bottom nav height (70px) + 15px extra */
   }
 
   .behavior-type-buttons {
-    gap: 8px; /* 버튼 간격 줄이기 */
+    gap: 8px;
   }
 
   .date-selector {
@@ -405,28 +362,17 @@
   .date-item {
     min-width: 45px;
   }
-
-  .bottom-nav-bar .nav-item {
-    min-width: 50px;
-  }
-  .bottom-nav-bar .nav-item > span:first-child {
-    font-size: 22px;
-  }
-
-  .bottom-nav-bar .play-button-wrapper {
-      top: -15px;
-      margin: 0 5px;
-  }
-
-  .bottom-nav-bar .play-button-large {
-      width: 50px;
-      height: 50px;
-      font-size: 25px;
-  }
 }
 
 /* 화면 너비 320px 이하 (아주 작은 스마트폰) */
 @media (max-width: 320px) {
+  .log-header { /* Add this block */
+    height: 45px; /* Adjust header height */
+  }
+  .log-content {
+    height: calc(100vh - 45px - 65px - 0px); /* Header 45px, bottom nav 65px, bottom 0px */
+    padding-bottom: 80px; /* Adjust padding-bottom based on bottom nav height (65px) + 15px extra */
+  }
   .log-header .logo {
     font-size: 22px;
   }
@@ -439,10 +385,5 @@
 
   .log-textarea {
     min-height: 80px;
-  }
-
-  .bottom-nav-bar .nav-item {
-    font-size: 10px;
-    min-width: 40px;
   }
 }

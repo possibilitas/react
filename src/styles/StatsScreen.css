@@ -17,6 +17,9 @@
   padding: 15px 20px;
   background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0; /* 헤더가 줄어들지 않도록 */
+  height: 60px; /* 명시적인 높이 추가 (예시) */
+  box-sizing: border-box; /* 패딩이 높이에 포함되도록 */
 }
 
 .stats-header .logo {
@@ -36,8 +39,10 @@
   flex-grow: 1;
   padding: 20px;
   overflow-y: auto;
-  padding-bottom: 80px; /* 하단 네비게이션 바 공간 확보 */
-  height: 0;
+  /* 하단 내비게이션 바 높이(80px)와 헤더 높이(60px), bottom 0px를 고려하여 계산 */
+  height: calc(100vh - 60px - 80px - 0px); /* 기존 height: 0; 변경 */
+  padding-bottom: 95px; /* 하단 네비게이션 바 공간 확보 (80px (하단바) + 15px (여유공간)) */
+  box-sizing: border-box; /* 패딩이 너비에 포함되도록 */
 }
 
 .card {
@@ -202,7 +207,8 @@
 }
 
 
-/* 하단 내비게이션 바 (공통 스타일, App.css 또는 별도 파일로 옮겨도 좋습니다) */
+/* 하단 내비게이션 바 (이 섹션은 BottomNavigation.css에서 관리되므로 이 파일에서는 삭제함) */
+/*
 .bottom-nav-bar {
   display: flex;
   justify-content: space-around;
@@ -210,7 +216,7 @@
   background-color: #ffffff;
   padding: 10px 0;
   border-top: 1px solid #eee;
-  position: sticky; /* 또는 fixed */
+  position: sticky;
   bottom: 0;
   width: 100%;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
@@ -264,6 +270,7 @@
   background-color: #7a73ff;
   color: white;
 }
+*/
 
 
 /* ---------------------------------------------------- */
@@ -272,8 +279,13 @@
 
 /* 화면 너비 768px 이하 (태블릿 및 모바일) */
 @media (max-width: 768px) {
+  .stats-header {
+    height: 55px; /* 헤더 높이 조정 */
+  }
   .stats-content {
     padding: 15px;
+    height: calc(100vh - 55px - 75px - 0px); /* 헤더 55px, 하단바 75px, bottom 0px */
+    padding-bottom: 90px; /* 하단 네비게이션 바 공간 확보 (75px (하단바) + 15px (여유공간)) */
   }
 
   .stats-header .logo {
@@ -312,8 +324,13 @@
 
 /* 화면 너비 500px 이하 (주로 스마트폰) */
 @media (max-width: 500px) {
+  .stats-header {
+    height: 50px; /* 헤더 높이 조정 */
+  }
   .stats-content {
     padding: 10px;
+    height: calc(100vh - 50px - 70px - 0px); /* 헤더 50px, 하단바 70px, bottom 0px */
+    padding-bottom: 85px; /* 하단 네비게이션 바 공간 확보 (70px (하단바) + 15px (여유공간)) */
   }
 
   .stats-summary-section .summary-grid {
@@ -356,28 +373,18 @@
   .top-trained-areas-section .area-list li {
     font-size: 14px;
   }
-
-  .bottom-nav-bar .nav-item {
-    min-width: 50px;
-  }
-  .bottom-nav-bar .nav-item > span:first-child {
-    font-size: 22px;
-  }
-
-  .bottom-nav-bar .play-button-wrapper {
-      top: -15px;
-      margin: 0 5px;
-  }
-
-  .bottom-nav-bar .play-button-large {
-      width: 50px;
-      height: 50px;
-      font-size: 25px;
-  }
+  /* bottom-nav-bar related styles were removed, no need to adjust its specific media queries here */
 }
 
 /* 화면 너비 320px 이하 (아주 작은 스마트폰) */
 @media (max-width: 320px) {
+  .stats-header {
+    height: 45px; /* 헤더 높이 조정 */
+  }
+  .stats-content {
+    height: calc(100vh - 45px - 65px - 0px); /* 헤더 45px, 하단바 65px, bottom 0px */
+    padding-bottom: 80px; /* 하단 네비게이션 바 공간 확보 (65px (하단바) + 15px (여유공간)) */
+  }
   .stats-header .logo {
     font-size: 22px;
   }
@@ -402,9 +409,5 @@
   .top-trained-areas-section .area-list li {
     font-size: 13px;
   }
-
-  .bottom-nav-bar .nav-item {
-    font-size: 10px;
-    min-width: 40px;
-  }
+  /* bottom-nav-bar related styles were removed, no need to adjust its specific media queries here */
 }

@@ -21,7 +21,7 @@ const FirstGamePage = () => {
     const hasFetched = useRef(false);
     const questionStartTime = useRef(null);
     const quizUserId = 11; // 퀴즈 생성용 ID
-    const itemUserId = 2;  // 아이템(감정 이미지)용 ID
+    const itemUserId = 1;  // 아이템(감정 이미지)용 ID
 
     // --- 새 게임 시작 및 데이터 로딩 함수 ---
     const startNewGame = useCallback(async () => {
